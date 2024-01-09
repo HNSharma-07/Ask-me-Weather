@@ -17,6 +17,8 @@ const API_KEY = "d98a7c7e810430218d802cc60b0e9269";
 let currentTab = userTab;
 currentTab.classList.add("current-tab");
 //something is pending
+//here we are at userTab so // check local storage for coordinates and display weather accordingly
+getFromSessionStorage();
 
 function switchTab(clickedTab) {
   if (clickedTab != currentTab) {
@@ -87,6 +89,7 @@ async function fetchUserWeatherInfo(coordinates) {
   } catch (error) {
     loadingScreen.classList.remove("active");
     // pending (procrastinated)
+    alert("Error: ", error.message);
   }
 }
 
@@ -121,6 +124,9 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
     // show alert for no location find (procrastinated)
+    alert(
+      "Sorry, we can't get your geoLocation Information. But, You can try by Searching City manually"
+    );
   }
 }
 
@@ -158,12 +164,17 @@ async function fetchSearchWeatherInfo(city) {
     );
     const data = await response.json();
 
-    loadingScreen.classList.remove("active");
-    userInfoContainer.classList.add("active");
+    if (data.cod == "404") {
+      throw error;
+    } else {
+      loadingScreen.classList.remove("active");
+      userInfoContainer.classList.add("active");
 
-    renderWeatherInfo(data);
+      renderWeatherInfo(data);
+    }
   } catch (error) {
     // procrastinated things :)
+    alert("Enter valid city name !");
   }
 }
 
