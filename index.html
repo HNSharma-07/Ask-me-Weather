@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/weather-app.png"
+      type="image/x-icon"
+    />
+    <title>Ask me Weather!</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Weather App</h1>
+      <div class="tab-container">
+        <p class="tab" data-userWeather>Your Weather</p>
+        <p class="tab" data-searchWeather>Search city</p>
+      </div>
+      <div class="weather-container">
+        <div class="grant-location-container sub-container">
+          <img
+            src="./assets/location.png"
+            alt="location"
+            width="80"
+            height="80"
+            loading="lazy"
+          />
+          <p>Grant Loacation Access</p>
+          <p>Allow access to get Weather Information</p>
+          <button class="btn" data-grantAccess>Grant Access</button>
+        </div>
+
+        <form class="form-container" data-searchForm>
+          <input
+            type="text"
+            placeholder="search for City..."
+            data-searchInput
+          />
+          <button class="btn">
+            <img
+              src="./assets/search.png"
+              alt="search"
+              height="20"
+              width="20"
+              loading="lazy"
+            />
+          </button>
+        </form>
+
+        <div class="loading-container sub-container">
+          <img src="./assets/loading.gif" alt="load" width="150" height="150" />
+          <p>Loading...</p>
+        </div>
+
+        <div class="user-info-container sub-container">
+          <div class="name">
+            <p data-cityName></p>
+            <img data-countryIcon />
+          </div>
+
+          <p data-weatherDisc></p>
+          <img data-weatherIcon />
+          <p data-temp></p>
+
+          <!-- 3 flex -->
+          <div class="parameter-container">
+            <div class="parameter">
+              <img src="./assets/wind.png" alt="wind" />
+              <p>WindSpeed</p>
+              <p data-windSpeed></p>
+            </div>
+            <div class="parameter">
+              <img src="./assets/humidity.png" alt="humidity" />
+              <p>Humidity</p>
+              <p data-humidity></p>
+            </div>
+            <div class="parameter">
+              <img src="./assets/cloud.png" alt="cloud" />
+              <p>Clouds</p>
+              <p data-cloudiness></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
