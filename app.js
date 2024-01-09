@@ -86,6 +86,31 @@ async function fetchUserWeatherInfo(coordinates) {
 
     // show data to UI screen
     renderWeatherInfo(data);
+
+    // feature of coverting temperature units
+    const tempSelect = document.querySelector("[data-tempSelect]");
+    const temp = document.querySelector("[data-temp]");
+    // when client clicked on select element
+    tempSelect.addEventListener("click", () => {
+      // if default value is changed
+      tempSelect.addEventListener("change", () => {
+        // if value switched by client
+        switch (tempSelect.value) {
+          case "cel":
+            //do somthing with  , "cel" value
+            convertToCel(data);
+            break;
+          case "fah":
+            //do somthing with  , "fah" value
+            convertToFah(data);
+            break;
+          default:
+            //kalvin means put previous
+            temp.innerText = `${(data?.main?.temp).toFixed(2)} K`;
+            return;
+        }
+      });
+    });
   } catch (error) {
     loadingScreen.classList.remove("active");
     // pending (procrastinated)
@@ -171,11 +196,50 @@ async function fetchSearchWeatherInfo(city) {
       userInfoContainer.classList.add("active");
 
       renderWeatherInfo(data);
+
+      // feature of coverting temperature units
+      const tempSelect = document.querySelector("[data-tempSelect]");
+      const temp = document.querySelector("[data-temp]");
+      // when client clicked on select element
+      tempSelect.addEventListener("click", () => {
+        // if default value is changed
+        tempSelect.addEventListener("change", () => {
+          // if value switched by client
+          switch (tempSelect.value) {
+            case "cel":
+              //do somthing with  , "cel" value
+              convertToCel(data);
+              break;
+            case "fah":
+              //do somthing with  , "fah" value
+              convertToFah(data);
+              break;
+            default:
+              //kalvin means put previous
+              temp.innerText = `${(data?.main?.temp).toFixed(2)} K`;
+              return;
+          }
+        });
+      });
     }
   } catch (error) {
     // procrastinated things :)
     alert("Enter valid city name !");
   }
+}
+
+// feature of coverting temperature units
+
+function convertToCel(weatherInfo) {
+  const temp = document.querySelector("[data-temp]");
+  let kelToCel = (weatherInfo?.main?.temp - 273.15).toFixed(2);
+  temp.innerText = `${kelToCel} °C`;
+}
+
+function convertToFah(weatherInfo) {
+  const temp = document.querySelector("[data-temp]");
+  let kelToFah = ((weatherInfo?.main?.temp - 273.15) * (9 / 5) + 32).toFixed(2);
+  temp.innerText = `${kelToFah} °F`;
 }
 
 /*
