@@ -240,3 +240,33 @@ h1 {
         width: 200px;
     }
 }
+
+/* feature of coverting temperature units */
+
+.temp-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.unit {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 2px solid rgba(219, 226, 239, 0.5);
+    border-radius: 4px;
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.unit option {
+    background-color: var(--colorDark2);
+    color: white;
+    border-radius: 4px;
+}
